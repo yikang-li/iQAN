@@ -5,7 +5,7 @@ If you need any help or more details, please feel free to contact [Yikang](mailt
 
 Plase cite me if you find it helpful:
 ```
-@article{li2017iqan,
+@article{li2018iqan,
   author={Li, Yikang and 
     Duan, Nan and 
     Zhou, Bolei and 
