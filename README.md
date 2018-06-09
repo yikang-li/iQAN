@@ -3,7 +3,7 @@ This is a *placeholder* for Invertible Question Answering Network proposed in ou
 
 If you need any help or more details, please feel free to contact [Yikang](mailto:allen.li.thu@gmail.com).
 
-Plase cite the arXiv paper if you find it helpful:
+Plase cite me if you find it helpful:
 ```
 @article{li2017iqan,
   author={Li, Yikang and 
@@ -11,10 +11,11 @@ Plase cite the arXiv paper if you find it helpful:
     Zhou, Bolei and 
     Chu, Xiao and 
     Ouyang, Wanli and 
-    Wang, Xiaogang},
+    Wang, Xiaogang and
+    Zhou, Ming},
   title={Visual Question Generation as Dual Task of Visual Question Answering},
-  journal={arXiv preprint arXiv:1709.07192},
-  year = {2017},
-  url = {http://cvboy.com/publication/aaai2017_iqan/}
+  journal={CVPR},
+  year = {2018},
+  url = {http://cvboy.com/publication/cvpr2018_iqan/}
 }
 ```
