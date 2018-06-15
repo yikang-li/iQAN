@@ -1,0 +1,90 @@
+logs:
+    dir_logs: logs/dual_model/iQAN_Mutan_skipthought
+vqa:
+    dataset: VQA2
+    dir: data/vqa2
+    trainsplit: train
+    nans: 2000
+    maxlength: 17
+    minwcount: 10
+    nlp: nltk
+    pad: right
+    add_start: True #whether to add start
+    samplingans: False
+    select_questions: True
+    ##### concept related settings
+    sample_concept: False
+    concept_mincount: 30 
+    ##### whether to sample all the answers
+    all_ans: False
+coco:
+    dir: data/coco
+    arch: resnet152
+    mode: att
+    size: 448
+    #conv: True
+optim:
+    lr: 0.0001
+    lr_decay: 0.5
+    lr_decay_epoch: 30
+    batch_size: 512
+    epochs: 50
+    optimizer: Adam
+    weight_decay: 0.00001
+## Model Settings
+model: 
+    arch: Dual_Model
+    arch_resnet: resnet152
+    dim_v: 2048
+    dim_q: 2400
+    dim_a: 510
+    share_modules: False
+    seq2vec:
+        arch: skipthoughts
+        dir_st: data/skip-thoughts
+        type: BayesianUniSkip
+        dropout: 0.25
+        fixed_emb: False
+    attention: 
+        arch: Mutan
+        nb_glimpses: 2
+        dim_hv: 310
+        dim_hq: 310
+        dim_mm: 510
+        R: 5
+        dropout_v: 0.5
+        dropout_q: 0.5
+        dropout_mm: 0.5
+        activation_v: tanh
+        activation_q: tanh
+        dropout_hv: 0
+        dropout_hq: 0
+    
+    # VQA module settings for Mutan
+    vqa:
+        classif:
+            activation: tanh
+            dropout: 0.5
+        fusion:
+            dim_hv: 620
+            dim_hq: 510
+            dim_mm: 510
+            R: 5
+            dropout_v: 0.5
+            dropout_q: 0.5
+            activation_v: tanh
+            activation_q: tanh
+            dropout_hv: 0
+            dropout_hq: 0
+    vqg:
+        activation: tanh
+        dropout: 0.5
+        vec2seq:
+            nb_layers: 1
+            arch: Baseline   # correspond to Fusion
+            dim_embedding: 620
+            dim_h: 2400
+            activation: relu
+            dropout: 0.5
+            share_weight: 0 # share the weight of word embedding and word classifier
+            nseq: 20

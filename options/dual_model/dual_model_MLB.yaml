@@ -1,0 +1,80 @@
+logs:
+    dir_logs: logs/dual_model/iQAN_MLB
+vqa:
+    dataset: VQA2
+    dir: data/vqa2
+    trainsplit: train
+    nans: 2000
+    maxlength: 17
+    minwcount: 10
+    nlp: nltk
+    pad: right
+    add_start: True #whether to add start
+    samplingans: False
+    select_questions: True
+    ##### concept related settings
+    sample_concept: False
+    concept_mincount: 30 
+    ##### whether to sample all the answers
+    all_ans: False
+coco:
+    dir: data/coco
+    arch: resnet152
+    mode: att
+    size: 448
+    #conv: True
+optim:
+    lr: 0.0001
+    lr_decay: 0.5
+    lr_decay_epoch: 30
+    batch_size: 512
+    epochs: 50
+    optimizer: Adam
+    weight_decay: 0.00001
+## Model Settings
+model: 
+    arch: Dual_Model_MLB
+    arch_resnet: resnet152
+    dim_v: 2048
+    dim_q: 1200
+    dim_a: 1200
+    share_modules: True
+    seq2vec:
+        arch: lstm
+        emb_size: 620
+        hidden_size: 1200
+        num_layers: 2
+    attention: 
+        arch: MLB
+        nb_glimpses: 4
+        dim_h: 1200
+        dropout_v: 0.5
+        dropout_q: 0.5
+        dropout_mm: 0.5
+        activation_v: tanh
+        activation_q: tanh
+        activation_mm: tanh
+    
+    # VQA module settings for Mutan
+    vqa:
+        classif:
+            dropout: 0.5
+            activation: tanh
+        fusion:
+            dim_h: 1200
+            dropout_v: 0.5
+            dropout_q: 0.5
+            activation_v: tanh
+            activation_q: tanh
+    vqg:
+        activation: tanh
+        dropout: 0.5
+        vec2seq:
+            nb_layers: 2
+            arch: Baseline   # correspond to Fusion
+            dim_embedding: 620
+            dim_h: 1200
+            activation: tanh
+            dropout: 0.5
+            share_weight: 0 # share the weight of word embedding and word classifier
+            nseq: 20

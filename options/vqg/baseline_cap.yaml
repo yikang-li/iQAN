@@ -1,0 +1,39 @@
+logs:
+    dir_logs: logs/vqg/baseline_caption
+vqa:
+    dataset: VQA
+    dir: data/vqa
+    trainsplit: train
+    nans: 2000
+    maxlength: 26
+    minwcount: 10
+    nlp: nltk
+    pad: right
+    add_start: True
+    samplingans: True
+coco:
+    dir: data/coco
+    arch: resnet152
+    mode: noatt
+model:
+    arch: Baseline
+    dim_v: 2048
+    attention:
+        dim_h: 512
+        dropout: 0.5
+        activation: relu
+    vec2seq:
+        nb_layers: 2
+        arch: Baseline
+        dim_embedding: 512
+        dim_h: 512
+        share_weight: 1
+        nseq: 25
+optim:
+    lr: 0.001
+    lr_decay: 0.5
+    lr_decay_epoch: 10
+    batch_size: 512
+    epochs: 100
+    optimizer: Adam
+    weight_decay: 0.000001

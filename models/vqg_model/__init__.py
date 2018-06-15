@@ -1,0 +1,1 @@
+from .att import VQG_Att_Fusion_Mul, VQG_Att_Fusion_Concat, VQG_Att_Fusion_Mutan, VQG_Merge_noAtt_baseline, VQG_Att_Merge_Concat, VQG_Att_Merge_Mul, VQG_Att_Merge_Mutan

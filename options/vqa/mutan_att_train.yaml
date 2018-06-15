@@ -1,0 +1,66 @@
+logs:
+    dir_logs: logs/dual_model/VQA_baseline_Mutan
+vqa:
+    dataset: VQA2
+    dir: data/vqa2
+    trainsplit: train
+    nans: 2000
+    maxlength: 17
+    minwcount: 10
+    nlp: nltk
+    pad: right
+    add_start: True #whether to add start
+    samplingans: False
+    select_questions: True
+    ##### concept related settings
+    sample_concept: False
+    ##### whether to sample all the answers
+    all_ans: False
+coco:
+    dir: data/coco
+    arch: resnet152
+    mode: att
+    size: 224
+model:
+    arch: MutanAtt
+    dim_v: 2048
+    dim_q: 2400
+    seq2vec:
+        arch: skipthoughts
+        dir_st: data/skip-thoughts
+        type: BayesianUniSkip
+        dropout: 0.25
+        fixed_emb: False
+    attention:
+        nb_glimpses: 2
+        dim_hv: 310
+        dim_hq: 310
+        dim_mm: 510
+        R: 5
+        dropout_v: 0.5
+        dropout_q: 0.5
+        dropout_mm: 0.5
+        activation_v: tanh
+        activation_q: tanh
+        dropout_hv: 0
+        dropout_hq: 0
+        dim_v_fusion: 
+        dropout_fusion: 0.5
+        activation_fusion: tanh
+    fusion:
+        dim_hv: 620
+        dim_hq: 310
+        dim_mm: 510
+        R: 5
+        dropout_v: 0.5
+        dropout_q: 0.5
+        activation_v: tanh
+        activation_q: tanh
+        dropout_hv: 0
+        dropout_hq: 0
+    classif:
+        dropout: 0.5
+optim:
+    lr: 0.0001
+    batch_size: 512
+    epochs: 100

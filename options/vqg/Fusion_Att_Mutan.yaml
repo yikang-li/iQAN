@@ -1,0 +1,54 @@
+logs:
+    dir_logs: logs/vqg/att_mutan
+vqa:
+    dataset: VQA2
+    dir: data/vqa2
+    trainsplit: train
+    nans: 2000
+    maxlength: 26
+    minwcount: 10
+    nlp: nltk
+    pad: right
+    add_start: True
+    samplingans: True
+    select_questions: True
+coco:
+    dir: data/coco
+    arch: resnet152
+    mode: att
+model:
+    arch: VQG_Att_Fusion_Mutan
+    dim_v: 2048
+    dim_a: 1200
+    attention:
+        dim_hv: 310
+        dim_hq: 310
+        dim_mm: 510
+        R: 5
+        dropout_v: 0.5
+        dropout_q: 0.5
+        dropout_mm: 0.5
+        activation_v: tanh
+        activation_q: tanh
+        dropout_hv: 0
+        dropout_hq: 0
+        dropout: 0.5
+        activation: relu
+    vec2seq:
+        dim_v: 1024
+        arch: Baseline
+        dim_embedding: 512
+        dim_h: 512
+        nb_layers: 2
+        activation: relu
+        dropout: 0.5
+        share_weight: 1
+optim:
+    lr: 0.001
+    lr_decay: 0.5
+    lr_decay_epoch: 10
+    batch_size: 512
+    epochs: 100
+    eval_epochs: 10
+    optimizer: Adam
+    weight_decay: 0.00001

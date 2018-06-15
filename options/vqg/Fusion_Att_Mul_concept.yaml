@@ -1,0 +1,46 @@
+logs:
+    dir_logs: logs/vqg/att_mul_concept
+vqa:
+    dataset: VQA2
+    dir: data/vqa2
+    trainsplit: train
+    nans: 2000
+    maxlength: 26
+    minwcount: 10
+    nlp: nltk
+    pad: right
+    add_start: True #whether to add start
+    samplingans: True
+    select_questions: True
+    ##### concept related settings
+    sample_concept: True
+    concept_mincount: 30
+    criterion:  concept
+coco:
+    dir: data/coco
+    arch: resnet152
+    mode: att
+model:
+    arch: VQG_Att_Fusion_Mul
+    dim_v: 2048
+    dim_a: 1200
+    attention:
+        dim_h: 512
+        activation: relu
+    vec2seq:
+        nb_layers: 2
+        dim_v: 1024
+        arch: Baseline
+        dim_embedding: 512
+        dim_h: 512
+        activation: relu
+        share_weight: 1
+        nseq: 25
+optim:
+    lr: 0.001
+    lr_decay: 0.5
+    lr_decay_epoch: 5
+    batch_size: 512
+    epochs: 100
+    optimizer: Adam
+    weight_decay: 0.00001

@@ -1,0 +1,9 @@
+[submodule "vqa/external/VQA"]
+	path = vqa/external/VQA
+	url = https://github.com/Cadene/VQA.git
+[submodule "vqa/external/skip-thoughts.torch"]
+	path = vqa/external/skip-thoughts.torch
+	url = https://github.com/Cadene/skip-thoughts.torch.git
+[submodule "vqa/external/pretrained-models.pytorch"]
+	path = vqa/external/pretrained-models.pytorch
+	url = https://github.com/Cadene/pretrained-models.pytorch.git
